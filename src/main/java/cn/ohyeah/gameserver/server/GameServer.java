@@ -7,8 +7,8 @@ import org.springframework.context.support.AbstractApplicationContext;
 
 import cn.ohyeah.gameserver.cfg.SpringConfig;
 
-public class Main {
-	private static final Logger LOG = LoggerFactory.getLogger(Main.class);
+public class GameServer {
+	private static final Logger LOG = LoggerFactory.getLogger(GameServer.class);
 	public static void main(String[] args) {
 		LOG.debug("Starting application context");
 		AbstractApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);

@@ -24,17 +24,9 @@ import cn.ohyeah.gameserver.handlers.StringProtocolInitalizer;
 
 
 /**
- * This class contains the bean definitions for this netty server. These beans
- * are autowired into the respective java classes in org.nerdronix.* packages
- * using component scan feature of spring. Properties are injected using the
- * PropertySource. For more information look <a href=
- * "http://static.springsource.org/spring/docs/3.2.2.RELEASE/javadoc-api/org/springframework/context/annotation/Configuration.html"
- * >here</a> and <a href=
- * "http://blog.springsource.com/2011/06/10/spring-3-1-m2-configuration-enhancements/"
- * >here</a>
  * 
- * @author Abraham Menacherry
- * 
+ * @author Administrator
+ *
  */
 @Configuration
 @ComponentScan("cn.ohyeah")
@@ -115,7 +107,6 @@ public class SpringConfig {
 
 	/**
 	 * Necessary to make the Value annotations work.
-	 * 
 	 * @return
 	 */
 	@Bean
