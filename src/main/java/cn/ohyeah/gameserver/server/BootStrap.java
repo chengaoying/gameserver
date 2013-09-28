@@ -8,13 +8,17 @@ import java.net.InetSocketAddress;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
 public class BootStrap {
-
+	
+	private static final Log log = LogFactory.getLog(BootStrap.class);
+	
 	@Autowired
 	@Qualifier("serverBootstrap")
 	private ServerBootstrap b;
@@ -26,9 +30,14 @@ public class BootStrap {
 	private Channel serverChannel;
 
 	@PostConstruct
-	public void start() throws Exception {
-		System.out.println("Starting server at " + tcpPort);
-		serverChannel = b.bind(tcpPort).sync().channel().closeFuture().sync().channel();
+	public void start(){
+		log.info("game server start");
+		try {
+			serverChannel = b.bind(tcpPort).sync().channel().closeFuture().sync().channel();
+		} catch (InterruptedException e) {
+			log.error("gameserver start error:", e);
+			throw new RuntimeException("gameserver start error:", e);
+		}
 	}
 
 	@PreDestroy
