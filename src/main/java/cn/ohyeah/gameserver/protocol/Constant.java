@@ -15,9 +15,10 @@ public class Constant {
 	/**
 	 * protocol command
 	 */
-	public static final short SYS_SERV_BREAK_HREAT = 0; 				/* 心跳命令 */
+	public static final short SYS_SERV_BREAK_HREAT = 1; 				/* 心跳命令 */
 
-	public static final short USER_SERV_REGISTER = 11; 				/* 用户注册 */
+	public static final short USER_SERV_REGISTER = 11; 					/* 用户注册 */
+	public static final short USER_SERV_LOGIN = 12; 					/* 用户登入 */
 	
 	/**
 	 * error code

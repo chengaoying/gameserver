@@ -39,6 +39,7 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
 		logger.debug("receive a connection:"+ctx.channel());
 		ConnectionsManager.getInstance().getChannelGroup().add(ctx.channel());
+		logger.info("连接数："+ConnectionsManager.getInstance().getChannelGroup().size());
 		/*for(Channel ch:ConnectionsManager.getInstance().getChannelGroup()){
 			ch.writeAndFlush("hello, "+ch);
 		}*/
@@ -52,7 +53,7 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
 
 	@Override
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)throws Exception {
-		logger.debug("error ", cause);
+		logger.info("error ", cause);
 		ctx.close();
 		ConnectionsManager.getInstance().getChannelGroup().remove(ctx.channel());
 	}

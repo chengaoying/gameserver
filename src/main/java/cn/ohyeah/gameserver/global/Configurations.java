@@ -49,6 +49,12 @@ public class Configurations {
 
 	@Value("${so.backlog}")
 	private int backlog;
+	
+	@Value("${read_idle}")
+	private int read_idle;
+	
+	@Value("${write_idle}")
+	private int write_idle;
 
 	@Value("${processor_base_package}")
 	private String processorBasePackage;
@@ -58,6 +64,9 @@ public class Configurations {
 	
 	@Value("${user_register_url}")
 	private String registerUrl;
+	
+	@Value("${user_login_url}")
+	private String loginUrl;
 
 	@Autowired
 	@Qualifier("defaultChannelInitializer")
@@ -122,9 +131,24 @@ public class Configurations {
 		return registerUrl;
 	}
 	
+	@Bean(name = "loginUrl")
+	public String getLoginUrl(){
+		return loginUrl;
+	}
+	
 	@Bean(name = "httpClient")
 	public DefaultHttpClient buildDefaultHttpClient(){
-		return ThreadSafeOfConnectionManager.buildDefaultHttpsClient();
+		return ThreadSafeConnectionManager.buildDefaultHttpsClient();
+	}
+	
+	@Bean(name = "readIdle")
+	public int getReadIdle(){
+		return read_idle;
+	}
+	
+	@Bean(name = "writeIdle")
+	public int getWriteIdle(){
+		return write_idle;
 	}
 
 	/**

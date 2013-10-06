@@ -25,9 +25,27 @@ public class UserProcessor implements IProcessor {
 		case Constant.USER_SERV_REGISTER:
 			userRegister(context);
 			break;
+		case Constant.USER_SERV_LOGIN:
+			userLogin(context);
+			break;
 		default:
 			break;
 		}
+	}
+
+	private void userLogin(ProcessContext context) {
+		ByteBuf req = context.getRequest();
+		ByteBuf rsp = context.createResponse(256);
+		UserInfo user = new UserInfo();
+		user.read(req);
+		Map<String, Object> map = userService.login(user);
+		int code = Integer.parseInt(String.valueOf(map.get("code")));
+		String message = String.valueOf(map.get("message"));
+		String data = String.valueOf(map.get("data"));
+		rsp.writeInt(context.getHead().getHead());
+		rsp.writeInt(code);
+		BytesUtil.writeString(rsp, message);
+		BytesUtil.writeString(rsp, data);
 	}
 
 	private void userRegister(ProcessContext context) {

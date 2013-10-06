@@ -25,7 +25,7 @@ import org.apache.http.params.HttpProtocolParams;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 
-public class ThreadSafeOfConnectionManager implements Runnable{
+public class ThreadSafeConnectionManager implements Runnable{
 	
 	/**
 	 * 请求超时30秒钟
@@ -51,13 +51,13 @@ public class ThreadSafeOfConnectionManager implements Runnable{
 	
 	private static boolean shutdown;
 	
-	private static Log log = LogFactory.getLog(ThreadSafeOfConnectionManager.class);
+	private static Log log = LogFactory.getLog(ThreadSafeConnectionManager.class);
 	private static PoolingClientConnectionManager pccm;
 	private static DefaultHttpClient client;
-	private static ThreadSafeOfConnectionManager instance;
+	private static ThreadSafeConnectionManager instance;
 	
 	static{
-		instance = new ThreadSafeOfConnectionManager();
+		instance = new ThreadSafeConnectionManager();
 		SchemeRegistry schemeRegistry = new SchemeRegistry();
         schemeRegistry.register(new Scheme("http", 80, PlainSocketFactory.getSocketFactory()));
 		pccm = new PoolingClientConnectionManager(schemeRegistry);
