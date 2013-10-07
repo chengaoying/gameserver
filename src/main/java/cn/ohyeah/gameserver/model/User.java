@@ -3,7 +3,7 @@ package cn.ohyeah.gameserver.model;
 import cn.ohyeah.gameserver.util.BytesUtil;
 import io.netty.buffer.ByteBuf;
 
-public class UserInfo {
+public class User {
 
 
 	private String name;

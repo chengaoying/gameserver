@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import cn.ohyeah.gameserver.global.ErrorCode;
 import cn.ohyeah.gameserver.global.ThreadSafeConnectionManager;
-import cn.ohyeah.gameserver.model.UserInfo;
+import cn.ohyeah.gameserver.model.User;
 
 @Service
 public class UserService {
@@ -37,7 +37,7 @@ public class UserService {
 	@Autowired
 	private String loginUrl;
 	
-	public Map<String, Object> register(UserInfo user) {
+	public Map<String, Object> register(User user) {
 		String url = String.format(remoteServer + registerUrl, user.getName(),user.getPassword());
 		HttpGet httpGet = new HttpGet(url);
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -78,7 +78,7 @@ public class UserService {
 
 	}
 	
-	public Map<String, Object> login(UserInfo user) {
+	public Map<String, Object> login(User user) {
 		String url = String.format(remoteServer + loginUrl, user.getName(),user.getPassword());
 		HttpGet httpGet = new HttpGet(url);
 		Map<String, Object> map = new HashMap<String, Object>();
