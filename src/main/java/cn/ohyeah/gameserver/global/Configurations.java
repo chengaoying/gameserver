@@ -65,8 +65,11 @@ public class Configurations {
 	@Value("${user_register_url}")
 	private String registerUrl;
 	
-	@Value("${user_login_url}")
-	private String loginUrl;
+	@Value("${user_login_url_360}")
+	private String loginUrl_360;
+	
+	@Value("${user_login_url_common}")
+	private String loginUrl_common;
 
 	@Autowired
 	@Qualifier("defaultChannelInitializer")
@@ -131,9 +134,14 @@ public class Configurations {
 		return registerUrl;
 	}
 	
-	@Bean(name = "loginUrl")
-	public String getLoginUrl(){
-		return loginUrl;
+	@Bean(name = "loginUrl_360")
+	public String getLoginUrl_360(){
+		return loginUrl_360;
+	}
+	
+	@Bean(name = "loginUrl_common")
+	public String getLoginUrl_common(){
+		return loginUrl_common;
 	}
 	
 	@Bean(name = "httpClient")

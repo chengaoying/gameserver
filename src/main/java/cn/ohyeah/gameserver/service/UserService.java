@@ -35,7 +35,7 @@ public class UserService {
 	private String registerUrl;
 	
 	@Autowired
-	private String loginUrl;
+	private String loginUrl_common;
 	
 	public Map<String, Object> register(User user) {
 		String url = String.format(remoteServer + registerUrl, user.getName(),user.getPassword());
@@ -79,7 +79,7 @@ public class UserService {
 	}
 	
 	public Map<String, Object> login(User user) {
-		String url = String.format(remoteServer + loginUrl, user.getName(),user.getPassword());
+		String url = String.format(remoteServer + loginUrl_common, user.getName(),user.getPassword());
 		HttpGet httpGet = new HttpGet(url);
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
