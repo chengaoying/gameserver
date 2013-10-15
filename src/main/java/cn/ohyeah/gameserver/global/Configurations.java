@@ -70,6 +70,9 @@ public class Configurations {
 	
 	@Value("${user_login_url_common}")
 	private String loginUrl_common;
+	
+	@Value("${load_prizes_url}")
+	private String load_prizes_url;
 
 	@Autowired
 	@Qualifier("defaultChannelInitializer")
@@ -142,6 +145,11 @@ public class Configurations {
 	@Bean(name = "loginUrl_common")
 	public String getLoginUrl_common(){
 		return loginUrl_common;
+	}
+	
+	@Bean(name = "load_prizes_url")
+	public String getLoadPrizesUrl(){
+		return load_prizes_url;
 	}
 	
 	@Bean(name = "httpClient")

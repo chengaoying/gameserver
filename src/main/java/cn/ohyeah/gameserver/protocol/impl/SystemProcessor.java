@@ -13,7 +13,7 @@ public class SystemProcessor implements IProcessor {
 		switch (context.getHead().getCommand()) {
 		case Constant.SYS_SERV_BREAK_HREAT:
 			//心跳包无须处理
-			System.out.println("接受心跳包");
+			System.out.println("接收心跳包");
 			break;
 		default:
 			break;

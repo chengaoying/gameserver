@@ -235,7 +235,7 @@ public class BytesUtil {
 		if(str == null || str.equals("")){
 			return;
 		}
-		buf.writeByte(str.length());
+		buf.writeInt(str.length());
 		for(int i=0;i<str.length();i++){
 			buf.writeChar(str.charAt(i));
 		}
@@ -247,7 +247,7 @@ public class BytesUtil {
 	 * @return str
 	 */
 	public static String readString(ByteBuf buf){
-		int len = buf.readByte();
+		int len = buf.readInt();
 		char[] str = new char[len];
 		for(int j=0;j<len;j++){
 			str[j] = buf.readChar();
