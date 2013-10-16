@@ -47,7 +47,8 @@ public class PrizeProcessor implements IProcessor {
 			int code = Integer.parseInt(String.valueOf(map.get("code")));
 			String message = String.valueOf(map.get("message"));
 			String data = String.valueOf(map.get("data"));
-			ByteBuf rsp = context.createResponse(data.getBytes().length + 256);
+			ByteBuf rsp = context.createResponse(1024*1024*2);
+			System.out.println("byteBuf.size==>"+rsp.capacity());
 			rsp.writeInt(context.getHead().getHead());
 			rsp.writeInt(code);
 			BytesUtil.writeString(rsp, message);
@@ -63,12 +64,9 @@ public class PrizeProcessor implements IProcessor {
 				BytesUtil.writeString(rsp, format(String.valueOf(node.get(i).get("name"))));
 				String location = format(String.valueOf(node.get(i).get("location")));
 				BytesUtil.writeString(rsp, picName(location));
-				rsp.writeBytes(FileUtils.FileToByteArray(new File(location)));
-				/*System.out.println(node.get(i).get("activityid"));
-				System.out.println(node.get(i).get("price"));
-				System.out.println(node.get(i).get("productid"));
-				System.out.println(format(String.valueOf(node.get(i).get("name"))));
-				System.out.println(format(String.valueOf(node.get(i).get("location"))));*/
+				byte[] bytes = FileUtils.FileToByteArray(new File(location));
+				System.out.println("文件大小==>"+bytes.length);
+				rsp.writeBytes(bytes);
 			}
 		} catch (JsonParseException e) {
 			e.printStackTrace();
