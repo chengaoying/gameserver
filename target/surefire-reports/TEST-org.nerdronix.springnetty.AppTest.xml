@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite failures="0" time="0.044" errors="0" skipped="0" tests="1" name="org.nerdronix.springnetty.AppTest">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="D:\program\development\Java\jdk1.7.0_03\jre\bin"/>
+    <property name="java.vm.version" value="22.1-b02"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=";"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) Client VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="CN"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="D:\home\coding\ide\mvn\gameserver"/>
+    <property name="java.runtime.version" value="1.7.0_03-b05"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="basedir" value="D:\home\coding\ide\mvn\gameserver"/>
+    <property name="java.endorsed.dirs" value="D:\program\development\Java\jdk1.7.0_03\jre\lib\endorsed"/>
+    <property name="os.arch" value="x86"/>
+    <property name="surefire.real.class.path" value="D:\home\coding\ide\mvn\gameserver\target\surefire\surefirebooter8801086978369660501.jar"/>
+    <property name="java.io.tmpdir" value="C:\Users\ADMINI~1\AppData\Local\Temp\"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 7"/>
+    <property name="sun.jnu.encoding" value="GBK"/>
+    <property name="java.library.path" value="D:\program\development\Java\jdk1.7.0_03\jre\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;D:/program/development/Java/jdk1.7.0_03/bin/../jre/bin/client;D:/program/development/Java/jdk1.7.0_03/bin/../jre/bin;D:/program/development/Java/jdk1.7.0_03/bin/../jre/lib/i386;C:\Users\Administrator\AppData\Roaming\Tencent\QPlus\4.4.2025.0\QPlusRes\features\backgroundtool\bin\;C:\Users\Administrator\AppData\Roaming\Tencent\QPlus\4.4.2025.0\QPlusRes\features\personalcenter\bin\;C:\Users\Administrator\AppData\Roaming\Tencent\QPlus\4.4.2025.0\QPlusRes\features\mirrorscreen\bin\;C:\Users\Administrator\AppData\Roaming\Tencent\QPlus\4.4.2025.0\Bin\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\ATI Technologies\ATI.ACE\Core-Static;D:\program\development\MinGW\bin;D:\program\development\msys\1.0\bin;D:\program\development\Java\jdk1.7.0_03\bin;D:\program\development\groovy-2.0.0\bin;%PERL_HOME%\bin;D:\program\development\python27;%RUBY_HOME%\bin;D:\program\development\mysql-5.5.8-win32\bin;D:\program\development\apache-maven-3.0.4\bin;C:\Program Files\Common Files\Thunder Network\KanKan\Codecs;%SVN_HOME%\bin;D:\home\bin;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;D:\program\development\jaxws-ri\bin;C:\Program Files\Microsoft SQL Server\90\DTS\Binn\;D:\program\development\apache-ant-1.8.2\bin;D:\program\development\scala-2.9.1.final\bin;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files\nodejs\;D:\program\development\GnuWin32\GetGnuWin32\bin;C:\Program Files\TortoiseGit\bin;D:\program\development\Git\bin;D:\program\development\gradle-1.0\bin;D:\program\development\igbt\bin;D:\program\development\svn\bin;D:\program\development\tortoiseSVN\bin;C:\Program Files\SSH Communications Security\SSH Secure Shell;D:\program\devtools\eclipse-jee;;."/>
+    <property name="surefire.test.class.path" value="D:\home\coding\ide\mvn\gameserver\target\test-classes;D:\home\coding\ide\mvn\gameserver\target\classes;D:\repository\maven\junit\junit\4.8.2\junit-4.8.2.jar;D:\repository\maven\org\slf4j\slf4j-api\1.6.1\slf4j-api-1.6.1.jar;D:\repository\maven\org\slf4j\slf4j-log4j12\1.6.1\slf4j-log4j12-1.6.1.jar;D:\repository\maven\log4j\log4j\1.2.16\log4j-1.2.16.jar;D:\repository\maven\org\slf4j\jcl-over-slf4j\1.7.2\jcl-over-slf4j-1.7.2.jar;D:\repository\maven\org\springframework\spring-context\3.2.2.RELEASE\spring-context-3.2.2.RELEASE.jar;D:\repository\maven\org\springframework\spring-aop\3.2.2.RELEASE\spring-aop-3.2.2.RELEASE.jar;D:\repository\maven\aopalliance\aopalliance\1.0\aopalliance-1.0.jar;D:\repository\maven\org\springframework\spring-beans\3.2.2.RELEASE\spring-beans-3.2.2.RELEASE.jar;D:\repository\maven\org\springframework\spring-core\3.2.2.RELEASE\spring-core-3.2.2.RELEASE.jar;D:\repository\maven\org\springframework\spring-expression\3.2.2.RELEASE\spring-expression-3.2.2.RELEASE.jar;D:\repository\maven\io\netty\netty-all\4.0.8.Final\netty-all-4.0.8.Final.jar;D:\repository\maven\org\apache\httpcomponents\httpclient\4.2.5\httpclient-4.2.5.jar;D:\repository\maven\commons-logging\commons-logging\1.1.1\commons-logging-1.1.1.jar;D:\repository\maven\commons-codec\commons-codec\1.6\commons-codec-1.6.jar;D:\repository\maven\org\apache\httpcomponents\httpcore\4.2.5\httpcore-4.2.5.jar;D:\repository\maven\org\apache\httpcomponents\httpmime\4.2.5\httpmime-4.2.5.jar;D:\repository\maven\com\fasterxml\jackson\core\jackson-core\2.0.5\jackson-core-2.0.5.jar;D:\repository\maven\com\fasterxml\jackson\core\jackson-databind\2.0.5\jackson-databind-2.0.5.jar;D:\repository\maven\com\fasterxml\jackson\core\jackson-annotations\2.0.5\jackson-annotations-2.0.5.jar;"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="51.0"/>
+    <property name="sun.management.compiler" value="HotSpot Client Compiler"/>
+    <property name="os.version" value="6.1"/>
+    <property name="user.home" value="C:\Users\Administrator"/>
+    <property name="user.timezone" value=""/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.7"/>
+    <property name="file.encoding" value="GBK"/>
+    <property name="user.name" value="Administrator"/>
+    <property name="java.class.path" value="D:\home\coding\ide\mvn\gameserver\target\test-classes;D:\home\coding\ide\mvn\gameserver\target\classes;D:\repository\maven\junit\junit\4.8.2\junit-4.8.2.jar;D:\repository\maven\org\slf4j\slf4j-api\1.6.1\slf4j-api-1.6.1.jar;D:\repository\maven\org\slf4j\slf4j-log4j12\1.6.1\slf4j-log4j12-1.6.1.jar;D:\repository\maven\log4j\log4j\1.2.16\log4j-1.2.16.jar;D:\repository\maven\org\slf4j\jcl-over-slf4j\1.7.2\jcl-over-slf4j-1.7.2.jar;D:\repository\maven\org\springframework\spring-context\3.2.2.RELEASE\spring-context-3.2.2.RELEASE.jar;D:\repository\maven\org\springframework\spring-aop\3.2.2.RELEASE\spring-aop-3.2.2.RELEASE.jar;D:\repository\maven\aopalliance\aopalliance\1.0\aopalliance-1.0.jar;D:\repository\maven\org\springframework\spring-beans\3.2.2.RELEASE\spring-beans-3.2.2.RELEASE.jar;D:\repository\maven\org\springframework\spring-core\3.2.2.RELEASE\spring-core-3.2.2.RELEASE.jar;D:\repository\maven\org\springframework\spring-expression\3.2.2.RELEASE\spring-expression-3.2.2.RELEASE.jar;D:\repository\maven\io\netty\netty-all\4.0.8.Final\netty-all-4.0.8.Final.jar;D:\repository\maven\org\apache\httpcomponents\httpclient\4.2.5\httpclient-4.2.5.jar;D:\repository\maven\commons-logging\commons-logging\1.1.1\commons-logging-1.1.1.jar;D:\repository\maven\commons-codec\commons-codec\1.6\commons-codec-1.6.jar;D:\repository\maven\org\apache\httpcomponents\httpcore\4.2.5\httpcore-4.2.5.jar;D:\repository\maven\org\apache\httpcomponents\httpmime\4.2.5\httpmime-4.2.5.jar;D:\repository\maven\com\fasterxml\jackson\core\jackson-core\2.0.5\jackson-core-2.0.5.jar;D:\repository\maven\com\fasterxml\jackson\core\jackson-databind\2.0.5\jackson-databind-2.0.5.jar;D:\repository\maven\com\fasterxml\jackson\core\jackson-annotations\2.0.5\jackson-annotations-2.0.5.jar;"/>
+    <property name="java.vm.specification.version" value="1.7"/>
+    <property name="sun.arch.data.model" value="32"/>
+    <property name="java.home" value="D:\program\development\Java\jdk1.7.0_03\jre"/>
+    <property name="sun.java.command" value="D:\home\coding\ide\mvn\gameserver\target\surefire\surefirebooter8801086978369660501.jar D:\home\coding\ide\mvn\gameserver\target\surefire\surefire7544899978880745049tmp D:\home\coding\ide\mvn\gameserver\target\surefire\surefire3934686047401049163tmp"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="zh"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.version" value="1.7.0_03"/>
+    <property name="java.ext.dirs" value="D:\program\development\Java\jdk1.7.0_03\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="D:\program\development\Java\jdk1.7.0_03\jre\lib\resources.jar;D:\program\development\Java\jdk1.7.0_03\jre\lib\rt.jar;D:\program\development\Java\jdk1.7.0_03\jre\lib\sunrsasign.jar;D:\program\development\Java\jdk1.7.0_03\jre\lib\jsse.jar;D:\program\development\Java\jdk1.7.0_03\jre\lib\jce.jar;D:\program\development\Java\jdk1.7.0_03\jre\lib\charsets.jar;D:\program\development\Java\jdk1.7.0_03\jre\classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="localRepository" value="D:\repository\maven"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value=""/>
+  </properties>
+  <testcase time="0.001" classname="org.nerdronix.springnetty.AppTest" name="testApp"/>
+</testsuite>

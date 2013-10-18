@@ -28,7 +28,7 @@ import cn.ohyeah.gameserver.handlers.DefaultChannelInitalizer;
  * @author jackey
  */
 @Configuration
-@ComponentScan("cn.ohyeah")
+@ComponentScan(basePackages = "cn.ohyeah")
 @PropertySource("classpath:configurations.properties")
 public class Configurations {
 

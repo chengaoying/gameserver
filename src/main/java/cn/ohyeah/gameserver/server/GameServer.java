@@ -13,5 +13,4 @@ public class GameServer {
 		AbstractApplicationContext ctx = new AnnotationConfigApplicationContext(Configurations.class);
 		ctx.registerShutdownHook();
 	}
-
 }
