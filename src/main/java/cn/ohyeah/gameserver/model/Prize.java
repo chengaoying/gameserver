@@ -12,7 +12,7 @@ public class Prize {
 	
 	private int activityid;
 	
-	private byte[] bytes;
+	//private byte[] bytes;
 
 	public int getPrizeid() {
 		return prizeid;
@@ -54,12 +54,12 @@ public class Prize {
 		this.activityid = activityid;
 	}
 
-	public byte[] getBytes() {
+	/*public byte[] getBytes() {
 		return bytes;
 	}
 
 	public void setBytes(byte[] bytes) {
 		this.bytes = bytes;
-	}
+	}*/
 	
 }

@@ -247,7 +247,10 @@ public class BytesUtil {
 	 * @return str
 	 */
 	public static String readString(ByteBuf buf){
-		int len = buf.readInt();
+		int len = 0;
+		if(buf.isReadable()){
+			len = buf.readInt();
+		}
 		char[] str = new char[len];
 		for(int j=0;j<len;j++){
 			str[j] = buf.readChar();

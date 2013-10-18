@@ -19,9 +19,9 @@ public class Test {
 	 * @throws JsonParseException 
 	 */
 	public static void main(String[] args) throws JsonParseException, JsonMappingException, IOException {
-		String str = "{\"message\":null," +
+		/*String str = "{\"message\":null," +
 				"\"data\":[{\"activityid\":1,\"price\":321,\"productid\":11,\"name\":\"ggaf\",\"location\":\"F:/test/prize/正则表达式系统教程.CHM\"},{\"activityid\":1,\"price\":321,\"productid\":11,\"name\":\"ggaf\",\"location\":\"F:/test/prize/architect-201310.pdf\"}]" +
-				",\"code\":0}";
+				",\"code\":0}";*/
 		
 		String s = "[{\"activityid\":1,\"price\":321,\"productid\":11,\"name\":\"ggaf\",\"location\":\"F:/test/prize/正则表达式系统教程.CHM\"},{\"activityid\":1,\"price\":321,\"productid\":11,\"name\":\"ggaf\",\"location\":\"F:/test/prize/architect-201310.pdf\"}]";
 		/*ObjectMapper om = new ObjectMapper();

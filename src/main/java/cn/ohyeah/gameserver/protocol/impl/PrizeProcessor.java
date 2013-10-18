@@ -1,6 +1,5 @@
 package cn.ohyeah.gameserver.protocol.impl;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
@@ -20,7 +19,6 @@ import cn.ohyeah.gameserver.protocol.IProcessor;
 import cn.ohyeah.gameserver.protocol.ProcessContext;
 import cn.ohyeah.gameserver.service.PrizeService;
 import cn.ohyeah.gameserver.util.BytesUtil;
-import cn.ohyeah.gameserver.util.FileUtils;
 
 @Service
 public class PrizeProcessor implements IProcessor {
@@ -48,12 +46,14 @@ public class PrizeProcessor implements IProcessor {
 			String message = String.valueOf(map.get("message"));
 			String data = String.valueOf(map.get("data"));
 			ByteBuf rsp = context.createResponse(1024*1024*2);
-			System.out.println("byteBuf.size==>"+rsp.capacity());
 			rsp.writeInt(context.getHead().getHead());
 			rsp.writeInt(code);
 			BytesUtil.writeString(rsp, message);
 			//BytesUtil.writeString(rsp, data);
-		
+			if(data == null || data.equals("null")){
+				rsp.writeInt(-1);
+				return;
+			}
 			ObjectMapper om = new ObjectMapper();
 			JsonNode node = om.readValue(data, JsonNode.class);
 			rsp.writeInt(node.size());
@@ -64,9 +64,9 @@ public class PrizeProcessor implements IProcessor {
 				BytesUtil.writeString(rsp, format(String.valueOf(node.get(i).get("name"))));
 				String location = format(String.valueOf(node.get(i).get("location")));
 				BytesUtil.writeString(rsp, picName(location));
-				byte[] bytes = FileUtils.FileToByteArray(new File(location));
-				System.out.println("文件大小==>"+bytes.length);
-				rsp.writeBytes(bytes);
+				//byte[] bytes = FileUtils.FileToByteArray(new File(location));
+				//System.out.println("文件大小==>"+bytes.length);
+				//rsp.writeBytes(bytes);
 			}
 		} catch (JsonParseException e) {
 			e.printStackTrace();
