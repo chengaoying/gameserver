@@ -2,17 +2,18 @@ package cn.ohyeah.gameserver.service;
 
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import cn.ohyeah.gameserver.global.Configurations;
 
-@Service
+
 public class PrizeService extends AbstractService{
 	
-	@Autowired
-	private String remoteServer;
+	private static final String remoteServer;
+	private static final String load_prizes_url;
 	
-	@Autowired
-	private String load_prizes_url;
+	static{
+		remoteServer = Configurations.configs.getProperty("remote.server");
+		load_prizes_url = Configurations.configs.getProperty("load_prizes_url");
+	}
 
 	public Map<String, Object> loadPrizes(int activityid){
 		String url = String.format(remoteServer + load_prizes_url, activityid);

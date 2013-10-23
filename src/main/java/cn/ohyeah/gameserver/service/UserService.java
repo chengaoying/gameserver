@@ -2,22 +2,20 @@ package cn.ohyeah.gameserver.service;
 
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import cn.ohyeah.gameserver.global.Configurations;
 import cn.ohyeah.gameserver.model.User;
 
-@Service
 public class UserService extends AbstractService{
 
-	@Autowired
-	private String remoteServer;
+	private static final String remoteServer;
+	private static final String registerUrl;
+	private static final String loginUrl_common;
 	
-	@Autowired
-	private String registerUrl;
-	
-	@Autowired
-	private String loginUrl_common;
+	static{
+		remoteServer = Configurations.configs.getProperty("remote.server");
+		registerUrl = Configurations.configs.getProperty("user_register_url");
+		loginUrl_common = Configurations.configs.getProperty("user_login_url_common");
+	}
 	
 	public Map<String, Object> register(User user) {
 		String url = String.format(remoteServer + registerUrl, user.getName(),user.getPassword());

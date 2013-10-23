@@ -4,29 +4,27 @@ import javax.annotation.PostConstruct;
 import io.netty.buffer.ByteBuf;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
+import cn.ohyeah.gameserver.global.BeanManager;
 import cn.ohyeah.gameserver.global.ErrorCode;
 import cn.ohyeah.gameserver.protocol.Constant;
 import cn.ohyeah.gameserver.protocol.HeadWrapper;
 import cn.ohyeah.gameserver.protocol.ProcessContext;
 import cn.ohyeah.gameserver.protocol.ProcessFrame;
 
-@Service
 public class DefaultProcessor {
 
 	private static Log logger = LogFactory.getLog(DefaultProcessor.class);
 	
-	@Autowired
-	private SystemProcessor systemProcessor;
+	private static final SystemProcessor systemProcessor;
+	private static final UserProcessor userProcessor;
+	private static final PrizeProcessor prizeProcessor;
 	
-	@Autowired
-	private UserProcessor userProcessor;
-	
-	@Autowired
-	private PrizeProcessor prizeProcessor;
-	
+	static{
+		systemProcessor = (SystemProcessor)BeanManager.getBean("systemProcessor");
+		userProcessor = (UserProcessor)BeanManager.getBean("userProcessor");
+		prizeProcessor = (PrizeProcessor)BeanManager.getBean("prizeProcessor");
+	}
 	
 	@PostConstruct
 	public void initDefaultProcessor() {}

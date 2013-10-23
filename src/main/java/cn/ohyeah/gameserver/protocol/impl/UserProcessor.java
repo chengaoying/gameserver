@@ -4,9 +4,7 @@ import java.util.Map;
 
 import io.netty.buffer.ByteBuf;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import cn.ohyeah.gameserver.global.BeanManager;
 import cn.ohyeah.gameserver.model.User;
 import cn.ohyeah.gameserver.protocol.Constant;
 import cn.ohyeah.gameserver.protocol.IProcessor;
@@ -14,11 +12,13 @@ import cn.ohyeah.gameserver.protocol.ProcessContext;
 import cn.ohyeah.gameserver.service.UserService;
 import cn.ohyeah.gameserver.util.BytesUtil;
 
-@Service
 public class UserProcessor implements IProcessor {
 
-	@Autowired
-	private UserService userService;
+	private static final UserService userService;
+	
+	static{
+		userService = (UserService)BeanManager.getBean("userService");
+	}
 	
 	public void process(ProcessContext context) {
 		switch (context.getHead().getCommand()) {

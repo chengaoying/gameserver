@@ -1,6 +1,5 @@
 package cn.ohyeah.gameserver.handlers;
 
-import org.springframework.stereotype.Component;
 import io.netty.channel.ChannelHandler.Sharable;
 import cn.ohyeah.gameserver.protocol.Constant;
 import cn.ohyeah.gameserver.protocol.HeadWrapper;
@@ -11,7 +10,6 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
 
-@Component
 @Sharable
 public class HeartBeatHandler extends ChannelDuplexHandler {
 

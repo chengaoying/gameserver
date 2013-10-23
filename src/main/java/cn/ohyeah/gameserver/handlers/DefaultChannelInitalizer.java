@@ -1,38 +1,34 @@
 package cn.ohyeah.gameserver.handlers;
 
+import cn.ohyeah.gameserver.global.BeanManager;
+import cn.ohyeah.gameserver.global.Configurations;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.timeout.IdleStateHandler;
+import io.netty.util.concurrent.DefaultEventExecutorGroup;
 import io.netty.util.concurrent.EventExecutorGroup;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 
 /**
  * Just a dummy protocol mainly to show the ServerBootstrap being initialized.
  * @author Jackey Chan
- * 
  */
-@Component
-@Qualifier("defaultChannelInitializer")
 public class DefaultChannelInitalizer extends ChannelInitializer<SocketChannel> {
 
-	@Autowired
-	ServerHandler serverHandler;
+	private static final ServerHandler serverHandler;
+	private static final HeartBeatHandler heartBeatHandler;
+	private static final int readIdle;
+	private static final int writeIdle;
+	private static final EventExecutorGroup executorGroup;
 	
-	@Autowired
-	HeartBeatHandler heartBeatHandler;
-	
-	@Autowired
-	int readIdle;
-	
-	@Autowired
-	int writeIdle;
-	
-	@Autowired
-	EventExecutorGroup executorGroup;
+	static{
+		serverHandler = (ServerHandler)BeanManager.getBean("serverHandler");
+		heartBeatHandler = (HeartBeatHandler)BeanManager.getBean("heartBeatHandler");
+		readIdle = Integer.parseInt(Configurations.configs.getProperty("read_idle"));
+		writeIdle = Integer.parseInt(Configurations.configs.getProperty("write_idle"));
+		
+		executorGroup = new DefaultEventExecutorGroup(Integer.parseInt(Configurations.configs.getProperty("group.thread.count")));
+	}
 	
 	@Override
 	protected void initChannel(SocketChannel ch) throws Exception {

@@ -5,14 +5,12 @@ import java.util.Map;
 
 import io.netty.buffer.ByteBuf;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import cn.ohyeah.gameserver.global.BeanManager;
 import cn.ohyeah.gameserver.global.ErrorCode;
 import cn.ohyeah.gameserver.protocol.Constant;
 import cn.ohyeah.gameserver.protocol.IProcessor;
@@ -20,11 +18,13 @@ import cn.ohyeah.gameserver.protocol.ProcessContext;
 import cn.ohyeah.gameserver.service.PrizeService;
 import cn.ohyeah.gameserver.util.BytesUtil;
 
-@Service
 public class PrizeProcessor implements IProcessor {
 
-	@Autowired
-	private PrizeService prizeService;
+	private static final PrizeService prizeService;
+	
+	static{
+		prizeService = (PrizeService)BeanManager.getBean("prizeService");
+	}
 	
 	@Override
 	public void process(ProcessContext context) {

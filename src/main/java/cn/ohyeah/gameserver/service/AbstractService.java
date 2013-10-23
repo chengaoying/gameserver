@@ -8,7 +8,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.ohyeah.gameserver.global.ErrorCode;
 import cn.ohyeah.gameserver.global.ThreadSafeConnectionManager;
@@ -22,9 +21,12 @@ public class AbstractService {
 	
 private static final Log log = LogFactory.getLog(AbstractService.class);
 	
-	@Autowired
-	private DefaultHttpClient httpClient;
+	private static final DefaultHttpClient httpClient;
 
+	static{
+		httpClient = ThreadSafeConnectionManager.buildDefaultHttpsClient();
+	}
+	
 	public Map<String, Object>  remoteMethodInvoke(String url, String info){
 		log.info("请求的地址==>"+url);
 		HttpGet httpGet = new HttpGet(url);
