@@ -2,10 +2,12 @@
 <beans>
 	<bean name="prizeService" class="cn.ohyeah.gameserver.service.PrizeService"/>
 	<bean name="userService" class="cn.ohyeah.gameserver.service.UserService"/>
+	<bean name="gameRecordService" class="cn.ohyeah.gameserver.service.GameRecordService"/>
 
 	<bean name="prizeProcessor" class="cn.ohyeah.gameserver.protocol.impl.PrizeProcessor"/>
 	<bean name="systemProcessor" class="cn.ohyeah.gameserver.protocol.impl.SystemProcessor"/>
 	<bean name="userProcessor" class="cn.ohyeah.gameserver.protocol.impl.UserProcessor"/>
+	<bean name="gameRecordProcessor" class="cn.ohyeah.gameserver.protocol.impl.GameRecordProcessor"/>
 	<bean name="defaultProcessor" class="cn.ohyeah.gameserver.protocol.impl.DefaultProcessor"/>
 	
 	<bean name="heartBeatHandler" class="cn.ohyeah.gameserver.handlers.HeartBeatHandler"/>
