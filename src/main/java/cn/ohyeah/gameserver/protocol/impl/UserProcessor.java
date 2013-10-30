@@ -5,6 +5,7 @@ import java.util.Map;
 import io.netty.buffer.ByteBuf;
 
 import cn.ohyeah.gameserver.global.BeanManager;
+import cn.ohyeah.gameserver.global.ErrorCode;
 import cn.ohyeah.gameserver.model.User;
 import cn.ohyeah.gameserver.protocol.Constant;
 import cn.ohyeah.gameserver.protocol.IProcessor;
@@ -29,6 +30,12 @@ public class UserProcessor implements IProcessor {
 			userLogin(context);
 			break;
 		default:
+			ByteBuf rsp = context.createResponse(256);
+			rsp.writeInt(context.getHead().getHead());
+			rsp.writeInt(ErrorCode.EC_PROTOCOL_PROCESSOR_ERROR);
+			BytesUtil.writeString(rsp, ErrorCode.getErrorMsg(ErrorCode.EC_PROTOCOL_PROCESSOR_ERROR)+":"+context.getHead().getCommand());
+			BytesUtil.writeString(rsp, "null");
+			context.getChannel().writeAndFlush(context.getResponse());
 			break;
 		}
 	}

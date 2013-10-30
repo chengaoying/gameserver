@@ -29,7 +29,13 @@ public class GameRecordProcessor implements IProcessor {
 			loadGameRecord(context);
 			break;
 		default:
-			throw new ProtocolProcessException(ErrorCode.getErrorMsg(ErrorCode.EC_PROTOCOL_PROCESSOR_ERROR));
+			ByteBuf rsp = context.createResponse(256);
+			rsp.writeInt(context.getHead().getHead());
+			rsp.writeInt(ErrorCode.EC_PROTOCOL_PROCESSOR_ERROR);
+			BytesUtil.writeString(rsp, ErrorCode.getErrorMsg(ErrorCode.EC_PROTOCOL_PROCESSOR_ERROR)+":"+context.getHead().getCommand());
+			BytesUtil.writeString(rsp, "null");
+			context.getChannel().writeAndFlush(context.getResponse());
+			break;
 		}
 	}
 

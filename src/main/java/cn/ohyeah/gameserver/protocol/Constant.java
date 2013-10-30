@@ -1,5 +1,8 @@
 package cn.ohyeah.gameserver.protocol;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Constant {
 	/**
 	 * protocol version
@@ -23,8 +26,11 @@ public class Constant {
 	public static final short USER_SERV_LOGIN = 12; 						/* 用户登入 */
 	
 	public static final short PRIZE_SERV_LOAD_INFO = 21; 					/* 获取奖品信息*/
+	public static final short PRIZE_SERV_LOAD_RES = 22; 					/* 获取奖品图片资源*/
 	
 	public static final short RECORD_SERV_SAVE = 31;						/* 保存游戏 记录*/
 	public static final short RECORD_SERV_LOAD = 32;						/* 读取游戏记录 */
+	
+	public static final List<String> res = new ArrayList<String>();			/* 存放图片路径 */		
 
 }

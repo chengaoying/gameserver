@@ -3,6 +3,7 @@ package cn.ohyeah.gameserver.protocol;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import io.netty.channel.Channel;
 
 import java.util.Map;
 
@@ -13,8 +14,17 @@ public class ProcessContext {
     private ByteBuf request;
     private ByteBuf response;
     private Map<String, Object> params;
+    private Channel channel;
 
-    public Map<String, Object> getParams() {
+    public Channel getChannel() {
+		return channel;
+	}
+
+	public void setChannel(Channel channel) {
+		this.channel = channel;
+	}
+
+	public Map<String, Object> getParams() {
         return params;
     }
 

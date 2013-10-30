@@ -5,6 +5,7 @@ import cn.ohyeah.gameserver.global.Configurations;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
+import io.netty.handler.stream.ChunkedWriteHandler;
 import io.netty.handler.timeout.IdleStateHandler;
 import io.netty.util.concurrent.DefaultEventExecutorGroup;
 import io.netty.util.concurrent.EventExecutorGroup;
@@ -37,6 +38,7 @@ public class DefaultChannelInitalizer extends ChannelInitializer<SocketChannel> 
 		//pipeline.addLast("encoder", stringEncoder);
 		pipeline.addLast(executorGroup,"idleStateHandler", new IdleStateHandler(readIdle, writeIdle, 0));
 		pipeline.addLast(executorGroup,"heartBeatHandler", heartBeatHandler);
+		pipeline.addLast(executorGroup,"chunkHandler",new ChunkedWriteHandler());
 		pipeline.addLast(executorGroup,"handler", serverHandler);
 	}
 
