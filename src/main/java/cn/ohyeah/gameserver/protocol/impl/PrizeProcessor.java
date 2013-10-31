@@ -13,12 +13,14 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import cn.ohyeah.gameserver.global.BeanManager;
+import cn.ohyeah.gameserver.global.Configurations;
 import cn.ohyeah.gameserver.global.ErrorCode;
 import cn.ohyeah.gameserver.protocol.Constant;
 import cn.ohyeah.gameserver.protocol.IProcessor;
 import cn.ohyeah.gameserver.protocol.ProcessContext;
 import cn.ohyeah.gameserver.service.PrizeService;
 import cn.ohyeah.gameserver.util.BytesUtil;
+import cn.ohyeah.gameserver.util.FileUtils;
 
 public class PrizeProcessor implements IProcessor {
 
@@ -50,15 +52,14 @@ public class PrizeProcessor implements IProcessor {
 	}
 
 	private void loadPrizesRes(ProcessContext context){
-		if(Constant.res.size() > 1){
-			for(int i=0;i<Constant.res.size();i++){
-				try {
-					context.getChannel().write(new ChunkedFile(new File(Constant.res.get(i))));
-					System.out.println("文件==>"+Constant.res.get(i));
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
+		String path = Configurations.configs.getProperty("prize_pic_path");
+		String name = "prize_pics";
+		FileUtils.fileToZip(path, path, name);
+		System.out.println("压缩后文件路径：" + path + name + ".zip");
+		try {
+			context.getChannel().write(new ChunkedFile(new File(path + name + ".zip")));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -89,7 +90,6 @@ public class PrizeProcessor implements IProcessor {
 				BytesUtil.writeString(rsp, format(String.valueOf(node.get(i).get("name"))));
 				String location = format(String.valueOf(node.get(i).get("location")));
 				BytesUtil.writeString(rsp, picName(location));
-				Constant.res.add(location);
 				//byte[] bytes = FileUtils.FileToByteArray(new File(location));
 				//System.out.println("文件大小==>"+bytes.length);
 				//rsp.writeBytes(bytes);
