@@ -21,12 +21,14 @@ public class DefaultProcessor {
 	private static final UserProcessor userProcessor;
 	private static final PrizeProcessor prizeProcessor;
 	private static final GameRecordProcessor gameRecordProcessor;
+	private static final UserPrizeRecordProcessor userPrizeRecordProcessor;
 	
 	static{
 		systemProcessor = (SystemProcessor)BeanManager.getBean("systemProcessor");
 		userProcessor = (UserProcessor)BeanManager.getBean("userProcessor");
 		prizeProcessor = (PrizeProcessor)BeanManager.getBean("prizeProcessor");
 		gameRecordProcessor = (GameRecordProcessor)BeanManager.getBean("gameRecordProcessor");
+		userPrizeRecordProcessor = (UserPrizeRecordProcessor)BeanManager.getBean("userPrizeRecordProcessor");
 	}
 	
 	@PostConstruct
@@ -54,6 +56,10 @@ public class DefaultProcessor {
 			break;
 		case Constant.PROTOCOL_TAG_RECORD_SERV:
 			gameRecordProcessor.process(context);
+			frame.getChannel().writeAndFlush(context.getResponse());
+			break;
+		case Constant.PROTOCOL_TAG_USER_PRIZE_RECORD:
+			userPrizeRecordProcessor.process(context);
 			frame.getChannel().writeAndFlush(context.getResponse());
 			break;
 		default:
