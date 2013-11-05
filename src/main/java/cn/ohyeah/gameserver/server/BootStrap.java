@@ -18,6 +18,7 @@ import org.apache.commons.logging.LogFactory;
 import cn.ohyeah.gameserver.global.BeanManager;
 import cn.ohyeah.gameserver.global.Configurations;
 import cn.ohyeah.gameserver.handlers.DefaultChannelInitalizer;
+import cn.ohyeah.gameserver.message.TaskExecutor;
 
 public class BootStrap {
 	
@@ -32,8 +33,8 @@ public class BootStrap {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void start(){
 		log.info("game server start");
-		EventLoopGroup bossGroup = bossGroup();   //这个是用于serversocketchannel的eventloop  
-        EventLoopGroup workerGroup = workerGroup();    //这个是用于处理accept到的channel  
+		EventLoopGroup bossGroup = bossGroup();   		//这个是用于serversocketchannel的eventloop  
+        EventLoopGroup workerGroup = workerGroup();     //这个是用于处理accept到的channel  
 		try {
 			ServerBootstrap b = new ServerBootstrap();
 			b.group(bossGroup, workerGroup)
@@ -44,6 +45,8 @@ public class BootStrap {
 			for (ChannelOption option : keySet) {
 				b.option(option, tcpChannelOptions.get(option));
 			}
+		
+			new Thread(new TaskExecutor(5)).start();
 			
 			ChannelFuture future = b.bind(tcpPort()).sync();
 			future.channel().closeFuture().sync();
@@ -75,8 +78,4 @@ public class BootStrap {
 		return options;
 	}
 	
-	public static void main(String[] args){
-		new BootStrap().start();
-	}
-
 }

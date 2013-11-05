@@ -2,14 +2,17 @@ D:\home\coding\eclipse-ee\gameserver\src\main\java\cn\ohyeah\gameserver\protocol
 D:\home\coding\eclipse-ee\gameserver\src\main\java\cn\ohyeah\gameserver\protocol\ProcessContext.java
 D:\home\coding\eclipse-ee\gameserver\src\main\java\cn\ohyeah\gameserver\global\BeanManager.java
 D:\home\coding\eclipse-ee\gameserver\src\main\java\cn\ohyeah\gameserver\protocol\IHeadAccessor.java
+D:\home\coding\eclipse-ee\gameserver\src\main\java\cn\ohyeah\gameserver\protocol\impl\UserPrizeRecordProcessor.java
+D:\home\coding\eclipse-ee\gameserver\src\main\java\cn\ohyeah\gameserver\message\TaskExecutor.java
 D:\home\coding\eclipse-ee\gameserver\src\main\java\cn\ohyeah\gameserver\protocol\impl\ProtocolProcessException.java
 D:\home\coding\eclipse-ee\gameserver\src\main\java\cn\ohyeah\gameserver\server\GameServer.java
 D:\home\coding\eclipse-ee\gameserver\src\main\java\cn\ohyeah\gameserver\util\FileUtils.java
 D:\home\coding\eclipse-ee\gameserver\src\main\java\cn\ohyeah\gameserver\server\BootStrap.java
 D:\home\coding\eclipse-ee\gameserver\src\main\java\cn\ohyeah\gameserver\service\GameRecordService.java
 D:\home\coding\eclipse-ee\gameserver\src\main\java\cn\ohyeah\gameserver\util\BytesUtil.java
-D:\home\coding\eclipse-ee\gameserver\src\main\java\cn\ohyeah\gameserver\message\MessageQueue.java
 D:\home\coding\eclipse-ee\gameserver\src\main\java\cn\ohyeah\gameserver\protocol\impl\GameRecordProcessor.java
+D:\home\coding\eclipse-ee\gameserver\src\main\java\cn\ohyeah\gameserver\message\MessageQueue.java
+D:\home\coding\eclipse-ee\gameserver\src\main\java\cn\ohyeah\gameserver\service\UserPrizeRecordService.java
 D:\home\coding\eclipse-ee\gameserver\src\main\java\cn\ohyeah\gameserver\protocol\Constant.java
 D:\home\coding\eclipse-ee\gameserver\src\main\java\cn\ohyeah\gameserver\service\UserService.java
 D:\home\coding\eclipse-ee\gameserver\src\main\java\cn\ohyeah\gameserver\protocol\IProcessor.java
@@ -17,6 +20,7 @@ D:\home\coding\eclipse-ee\gameserver\src\main\java\cn\ohyeah\gameserver\util\Con
 D:\home\coding\eclipse-ee\gameserver\src\main\java\cn\ohyeah\gameserver\model\Prize.java
 D:\home\coding\eclipse-ee\gameserver\src\main\java\cn\ohyeah\gameserver\service\AbstractService.java
 D:\home\coding\eclipse-ee\gameserver\src\main\java\cn\ohyeah\gameserver\util\ByteBuffer.java
+D:\home\coding\eclipse-ee\gameserver\src\main\java\cn\ohyeah\gameserver\message\Notice.java
 D:\home\coding\eclipse-ee\gameserver\src\main\java\cn\ohyeah\gameserver\global\ThreadSafeConnectionManager.java
 D:\home\coding\eclipse-ee\gameserver\src\main\java\cn\ohyeah\gameserver\handlers\HeartBeatHandler.java
 D:\home\coding\eclipse-ee\gameserver\src\main\java\cn\ohyeah\gameserver\service\PrizeService.java

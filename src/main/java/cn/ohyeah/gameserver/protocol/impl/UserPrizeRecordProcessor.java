@@ -1,21 +1,39 @@
 package cn.ohyeah.gameserver.protocol.impl;
 
+import java.io.IOException;
 import java.util.Map;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.netty.buffer.ByteBuf;
 import cn.ohyeah.gameserver.global.BeanManager;
+import cn.ohyeah.gameserver.message.MessageQueue;
+import cn.ohyeah.gameserver.message.Notice;
 import cn.ohyeah.gameserver.protocol.Constant;
 import cn.ohyeah.gameserver.protocol.IProcessor;
 import cn.ohyeah.gameserver.protocol.ProcessContext;
+import cn.ohyeah.gameserver.service.PrizeService;
 import cn.ohyeah.gameserver.service.UserPrizeRecordService;
+import cn.ohyeah.gameserver.service.UserService;
 import cn.ohyeah.gameserver.util.BytesUtil;
 
 public class UserPrizeRecordProcessor implements IProcessor {
+	private static final Log log = LogFactory.getLog(UserPrizeRecordProcessor.class);
 	
 	private static final UserPrizeRecordService userPrizeRecordService;
+	private static final UserService userService;
+	private static final PrizeService prizeService;
 	
 	static{
 		userPrizeRecordService = (UserPrizeRecordService)BeanManager.getBean("userPrizeRecordService");
+		userService = (UserService)BeanManager.getBean("userService");
+		prizeService = (PrizeService)BeanManager.getBean("prizeService");
 	}
 
 	@Override
@@ -59,6 +77,42 @@ public class UserPrizeRecordProcessor implements IProcessor {
 		rsp.writeInt(code);
 		BytesUtil.writeString(rsp, message);
 		BytesUtil.writeString(rsp, data);
+		
+		/**
+		 * 如果code=0,往消息队列中添加信息，服务器检测到有信息就发送给客户端
+		 */
+		if(code == 0){
+			Map<String,Object> userMap = userService.load(userid);
+			Map<String,Object> prizeMap = prizeService.load(prizeid);
+			log.info("中奖用户信息==>"+userMap);
+			log.info("用户所中奖品信息==>"+prizeMap);
+			String username = "";
+			String prizename = "";
+			String userdata = String.valueOf(userMap.get("data"));
+			String prizedata = String.valueOf(prizeMap.get("data"));
+			ObjectMapper om = new ObjectMapper();
+			try {
+				JsonNode node = om.readValue(userdata, JsonNode.class);
+				username = String.valueOf(node.get("name"));
+				JsonNode node2 = om.readValue(prizedata, JsonNode.class);
+				prizename = String.valueOf(node2.get("name"));
+			} catch (JsonParseException e) {
+				//e.printStackTrace();
+				log.error("json解析出错!");
+			} catch (JsonMappingException e) {
+				//e.printStackTrace();
+				log.error("json映射出错!");
+			} catch (IOException e) {
+				//e.printStackTrace();
+				log.error("io异常!");
+			}
+			String str = "恭喜用户" + username + "获得奖品" + prizename + "！";
+			Notice notice = new Notice();
+			notice.setContent(str);
+			MessageQueue.noticeQueue.add(notice);
+		}
 	}
+	
+	
 
 }
