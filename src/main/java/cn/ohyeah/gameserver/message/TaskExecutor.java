@@ -1,11 +1,11 @@
 package cn.ohyeah.gameserver.message;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import cn.ohyeah.gameserver.protocol.Constant;
 import cn.ohyeah.gameserver.protocol.HeadWrapper;
@@ -24,43 +24,51 @@ public class TaskExecutor implements Runnable{
 	public TaskExecutor(int poolSize){
 		executorService = Executors.newFixedThreadPool(poolSize);
 	}
+	
+	public TaskExecutor(){
+		executorService = Executors.newCachedThreadPool();
+	}
 
 	@Override
 	public void run() {
 		
-		while(true){
-			if(MessageQueue.hasNotice()){
-				for(Channel ch:ConnectionsManager.getInstance().getChannelGroup()){
-					HeadWrapper head = new HeadWrapper.Builder().version(Constant.PROTOCOL_VERSION).type(1)
-	                .tag(Constant.PROTOCOL_TAG_SYS_SERV).command(Constant.SYS_SERV_NOTICE).build();
-					ByteBuf buf = Unpooled.buffer(256);
-					buf.writeInt(head.getHead());
-					Notice notice = MessageQueue.noticeQueue.poll();
-					System.out.println(notice);
-					BytesUtil.writeString(buf, notice.getContent());
-					ch.writeAndFlush(buf);
-					System.out.println("服务器发送了通知");
+		/*while(true){
+			synchronized (MessageQueue.noticeQueue) {
+				if(MessageQueue.hasNotice()){
+					for(Channel ch:ConnectionsManager.getInstance().getChannelGroup()){
+						HeadWrapper head = new HeadWrapper.Builder().version(Constant.PROTOCOL_VERSION).type(1)
+		                .tag(Constant.PROTOCOL_TAG_SYS_SERV).command(Constant.SYS_SERV_NOTICE).build();
+						ByteBuf buf = Unpooled.buffer(256);
+						buf.writeInt(head.getHead());
+						Notice notice = MessageQueue.noticeQueue.poll();
+						System.out.println(notice);
+						BytesUtil.writeString(buf, notice.getContent());
+						ch.writeAndFlush(buf);
+						System.out.println("服务器发送了通知:"+notice.getContent());
+					}
 				}
 			}
-		}
+		}*/
 		
-		/*try {
+		try {
 			for (;;) {
 				executorService.execute(new Runnable() {
 					
 					@Override
 					public void run() {
-						if(MessageQueue.hasNotice()){
-							for(Channel ch:ConnectionsManager.getInstance().getChannelGroup()){
-								HeadWrapper head = new HeadWrapper.Builder().version(Constant.PROTOCOL_VERSION).type(1)
-				                .tag(Constant.PROTOCOL_TAG_SYS_SERV).command(Constant.SYS_SERV_NOTICE).build();
-								ByteBuf buf = Unpooled.buffer(256);
-								buf.writeInt(head.getHead());
-								Notice notice = MessageQueue.noticeQueue.poll();
-								System.out.println(notice);
-								BytesUtil.writeString(buf, notice.getContent());
-								ch.writeAndFlush(buf);
-								System.out.println("服务器发送了通知");
+						synchronized (MessageQueue.noticeQueue) {
+							if(MessageQueue.hasNotice()){
+								for(Channel ch:ConnectionsManager.getInstance().getChannelGroup()){
+									HeadWrapper head = new HeadWrapper.Builder().version(Constant.PROTOCOL_VERSION).type(1)
+					                .tag(Constant.PROTOCOL_TAG_SYS_SERV).command(Constant.SYS_SERV_NOTICE).build();
+									ByteBuf buf = Unpooled.buffer(256);
+									buf.writeInt(head.getHead());
+									Notice notice = MessageQueue.noticeQueue.poll();
+									System.out.println(notice);
+									BytesUtil.writeString(buf, notice.getContent());
+									ch.writeAndFlush(buf);
+									System.out.println("服务器发送了通知:"+notice.getContent());
+								}
 							}
 						}
 					}
@@ -68,6 +76,6 @@ public class TaskExecutor implements Runnable{
 			}
 		} catch (Exception ex) {
 			executorService.shutdown();
-		}*/
+		}
 	}
 }

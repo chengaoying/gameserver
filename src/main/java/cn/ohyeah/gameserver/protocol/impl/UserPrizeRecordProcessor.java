@@ -92,9 +92,9 @@ public class UserPrizeRecordProcessor implements IProcessor {
 			String prizedata = String.valueOf(prizeMap.get("data"));
 			ObjectMapper om = new ObjectMapper();
 			try {
-				JsonNode node = om.readValue(userdata, JsonNode.class);
+				JsonNode node = om.readValue(format(userdata), JsonNode.class);
 				username = String.valueOf(node.get("name"));
-				JsonNode node2 = om.readValue(prizedata, JsonNode.class);
+				JsonNode node2 = om.readValue(format(prizedata), JsonNode.class);
 				prizename = String.valueOf(node2.get("name"));
 			} catch (JsonParseException e) {
 				//e.printStackTrace();
@@ -106,13 +106,18 @@ public class UserPrizeRecordProcessor implements IProcessor {
 				//e.printStackTrace();
 				log.error("io异常!");
 			}
-			String str = "恭喜用户" + username + "获得奖品" + prizename + "！";
+			String str = "恭喜用户" + format(username) + "获得奖品" + format(prizename) + "！";
 			Notice notice = new Notice();
 			notice.setContent(str);
 			MessageQueue.noticeQueue.add(notice);
 		}
 	}
 	
-	
+	private String format(String str){
+		if(str.startsWith("[") || str.startsWith("\"")){
+			str = str.substring(1, str.length()-1);
+		}
+		return str;
+	}
 
 }

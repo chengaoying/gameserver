@@ -47,6 +47,7 @@ public class BootStrap {
 			}
 		
 			new Thread(new TaskExecutor(5)).start();
+			//new Thread(new TaskExecutor()).start();
 			
 			ChannelFuture future = b.bind(tcpPort()).sync();
 			future.channel().closeFuture().sync();
