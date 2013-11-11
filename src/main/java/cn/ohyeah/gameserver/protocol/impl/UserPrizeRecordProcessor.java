@@ -57,7 +57,29 @@ public class UserPrizeRecordProcessor implements IProcessor {
 		Map<String, Object> map = userPrizeRecordService.load(userid);
 		int code = Integer.parseInt(String.valueOf(map.get("code")));
 		String message = String.valueOf(map.get("message"));
-		String data = String.valueOf(map.get("data"));
+		String str = String.valueOf(map.get("data"));
+		String data = "[";
+		ObjectMapper om = new ObjectMapper();
+		try {
+			JsonNode node = om.readValue(/*format(*/str/*)*/, JsonNode.class);
+			//System.out.println("node.size==>"+node.size());
+			for(int i=0;i<node.size();i++){
+				//System.out.println("node.get(i).toString()==>"+node.get(i).toString());
+				JsonNode jn = om.readValue(node.get(i).toString(),JsonNode.class);
+				data += "{\"prizeid\":" + jn.get("prizeid") + ","
+					 + "\"userid\":" + jn.get("userid") + ","
+					 + "\"time\":" + jn.get("time")+"},"
+					 ;
+			}
+			data = data.substring(0, data.length()-1) + "]";
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		rsp.writeInt(context.getHead().getHead());
 		rsp.writeInt(code);
 		BytesUtil.writeString(rsp, message);
